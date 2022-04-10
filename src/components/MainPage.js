@@ -5,12 +5,12 @@ import SearchBar from './SearchBar';
 function MainPage() {
 
   return (
-    <div className="App">
+    <div className="main_page">
 
       <MainLogo/>
       <SearchBar/>
 
-      <div className="recommend_view">
+      {/* <div className="recommend_view">
         <span>분위기 좋은 카페나 로맨틱한 저녁 맛집은 어떠세요?</span>
 
         <div className="recommend_image_view">
@@ -27,7 +27,7 @@ function MainPage() {
             </div>
           </a>
         </div>
-      </div>
+      </div> */}
         
     </div>
   );

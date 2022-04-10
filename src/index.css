@@ -13,7 +13,7 @@ code {
 }
 
 .logo {
-  color: #fff;
+  white-space:nowrap;
   text-decoration-line: none;
   transition: all 0.2s linear;
   font-size: calc(40px + 2vmin);
@@ -22,8 +22,15 @@ code {
 }
 
 .logo:hover {
-  color: #fff;
   transform: scale(1.1);
+}
+
+.main_page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 70px;
 }
 
 .search_icon {
@@ -34,7 +41,8 @@ code {
 
 .search_input {
   padding: 0px 18px;
-  border-radius: 10px;
+  border: solid 3px #4c86f8;
+  border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -104,8 +112,9 @@ code {
 }
 
 .search_page {
+  background-color: white;
+  width: 100%;
   text-align: center;
-  background: linear-gradient(#d26918, #5d3713);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -125,6 +134,7 @@ code {
 
 .review_list {
   margin: 10px 2%;
+  width: 60%;
 }
 
 .review_list ul {
@@ -133,18 +143,18 @@ code {
 
 .review_card {
   border-width: 0px !important;
-  background: none !important;
+  background-color: #f8f8f8 !important;
   text-align: left;
-  font-size: 15px;
+  font-size: 13px;
 }
 
 .review_item {
-  color: #fff;
+  color: black;
   text-decoration: none;
 }
 
 .review_item:hover {
-  color: #fff;
+  color: black;
   text-decoration: none;
 }
 

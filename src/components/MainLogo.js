@@ -6,7 +6,7 @@ function MainLogo() {
   return (
     <>
       <Link className='logo' to='/'>
-        <span>NOAD</span>
+        <span>ㅉㅁㅉ</span>
       </Link>
     </>
   );

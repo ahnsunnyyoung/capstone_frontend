@@ -14,7 +14,7 @@ function ReviewItem({ key, title, postdate, link, description, bloggername }) {
         <Card.Body>
           <a className='review_item' href={link}>
             <Card.Text>{bloggername} {parse(postdate).toISOString().substring(0, 10)}</Card.Text>
-            <Card.Title>{title}</Card.Title>
+            <Card.Title style={{'font-weight':'900'}}>{title}</Card.Title>
             <Card.Text>{description}</Card.Text>
           </a>
         </Card.Body>

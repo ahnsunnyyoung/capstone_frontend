@@ -12,12 +12,14 @@ import SearchPage from './components/SearchPage';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route path="search" element={<SearchPage />} />
-      </Routes>
-    </BrowserRouter>
+    <div className="App">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="search" element={<SearchPage />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 
