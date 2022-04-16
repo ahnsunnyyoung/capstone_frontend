@@ -71,7 +71,7 @@ __webpack_require__.r(__webpack_exports__);
 /* provided dependency */ var __react_refresh_utils__ = __webpack_require__(/*! ./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js */ "./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js");
 __webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
 
-var _jsxFileName = "C:\\Users\\user\\Desktop\\react-app\\noad_demo\\src\\App.js";
+var _jsxFileName = "C:\\Users\\user\\Desktop\\react-app\\jjinbotjib\\src\\App.js";
 
 
 
@@ -180,7 +180,7 @@ __webpack_require__.r(__webpack_exports__);
 /* provided dependency */ var __react_refresh_utils__ = __webpack_require__(/*! ./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js */ "./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js");
 __webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
 
-var _jsxFileName = "C:\\Users\\user\\Desktop\\react-app\\noad_demo\\src\\index.js";
+var _jsxFileName = "C:\\Users\\user\\Desktop\\react-app\\jjinbotjib\\src\\index.js";
 
 
 
@@ -71223,7 +71223,7 @@ if (true) {
 /******/ 	/* webpack/runtime/load script */
 /******/ 	(() => {
 /******/ 		var inProgress = {};
-/******/ 		var dataWebpackPrefix = "noad_demo:";
+/******/ 		var dataWebpackPrefix = "jjinbotjib:";
 /******/ 		// loadScript function to load a script via script tag
 /******/ 		__webpack_require__.l = (url, done, key, chunkId) => {
 /******/ 			if(inProgress[url]) { inProgress[url].push(done); return; }
@@ -71826,7 +71826,7 @@ if (true) {
 /******/ 			});
 /******/ 		}
 /******/ 		
-/******/ 		globalThis["webpackHotUpdatenoad_demo"] = (chunkId, moreModules, runtime) => {
+/******/ 		globalThis["webpackHotUpdatejjinbotjib"] = (chunkId, moreModules, runtime) => {
 /******/ 			for(var moduleId in moreModules) {
 /******/ 				if(__webpack_require__.o(moreModules, moduleId)) {
 /******/ 					currentUpdate[moduleId] = moreModules[moduleId];
@@ -72320,7 +72320,7 @@ if (true) {
 /******/ 		
 /******/ 		}
 /******/ 		
-/******/ 		var chunkLoadingGlobal = globalThis["webpackChunknoad_demo"] = globalThis["webpackChunknoad_demo"] || [];
+/******/ 		var chunkLoadingGlobal = globalThis["webpackChunkjjinbotjib"] = globalThis["webpackChunkjjinbotjib"] || [];
 /******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
 /******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
 /******/ 	})();

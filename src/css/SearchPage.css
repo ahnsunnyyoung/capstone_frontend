@@ -1,0 +1,26 @@
+.review_list {
+  margin: 20px 4%;
+  width: 90%;
+  max-width: 900px;
+}
+
+.search_page {
+  background-color: white;
+  width: 100%;
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+  
+.search_page_header {
+  margin-left: 2%;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}

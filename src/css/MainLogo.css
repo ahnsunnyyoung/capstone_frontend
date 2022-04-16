@@ -1,0 +1,22 @@
+.logo {
+  white-space:nowrap;
+  text-decoration-line: none;
+  transition: all 0.2s linear;
+  font-size: calc(40px + 2vmin);
+  font-weight: 900;
+  margin: 15px;
+  -ms-user-select: none; 
+  -moz-user-select: -moz-none; 
+  -webkit-user-select: none; 
+  -khtml-user-select: none; 
+  user-select:none;
+}
+
+.logo:hover {
+  transform: scale(1.1);
+  -ms-user-select: none; 
+  -moz-user-select: -moz-none; 
+  -webkit-user-select: none; 
+  -khtml-user-select: none; 
+  user-select:none;
+}

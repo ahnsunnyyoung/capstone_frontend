@@ -2,6 +2,8 @@ import * as React from 'react';
 import { FaSearch } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 
+import '../css/SearchBar.css'
+
 function SearchBar() {
 
   return (
