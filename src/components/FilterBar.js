@@ -2,7 +2,7 @@ import Switch from '@mui/material/Switch';
 
 import '../css/FilterBar.css'
 
-const label = { inputProps: { 'aria-label': 'Switch demo' } };
+const label = { inputProps: { 'aria-label': 'Filter switch' } };
 
 function FilterBar({ count }) {
 

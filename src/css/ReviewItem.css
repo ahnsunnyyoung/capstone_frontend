@@ -1,19 +1,4 @@
-.review_card {
-  border-width: 0px !important;
-  background-color: #f8f8f8 !important;
-  text-align: left;
-  font-size: 0.9rem;
-}
 
-.review_item {
-  color: black;
-  text-decoration: none;
-}
-
-.review_item:hover {
-  color: black;
-  text-decoration: none;
-}
 
 .jjin_percent {
   font-weight: 900;

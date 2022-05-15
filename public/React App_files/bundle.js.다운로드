@@ -83,7 +83,7 @@ function App() {
     children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("header", {
       className: "App-header",
       children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("h1", {
-        children: "NOAD"
+        children: "jjinbotjib"
       }, void 0, false, {
         fileName: _jsxFileName,
         lineNumber: 10,

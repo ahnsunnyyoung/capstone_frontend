@@ -1,6 +1,8 @@
 import { Card } from 'react-bootstrap';
 
 import '../css/ReviewItem.css'
+import lightStyles from '../styles/lightStyles';
+import darkStyles from '../styles/darkStyles';
 
 function parse(str) {
   var y = str.substr(0,4),
@@ -9,11 +11,12 @@ function parse(str) {
   return new Date(y,m,d);
 }
 
-function ReviewItem({ key, title, postdate, link, description, bloggername, jjinper }) {
+function ReviewItem({ mode, key, title, postdate, link, description, bloggername, jjinper }) {
+  const classes = mode === 'dark' ? darkStyles() : lightStyles();
   return (
-      <Card className="review_card" key={key}>
+      <Card className={classes.reviewCard} key={key}>
         <Card.Body>
-          <a className='review_item' href={link}>
+          <a className={classes.reciewItem} href={link}>
             <Card.Text style={{'margin-bottom':'2px'}}>
               {bloggername} {parse(postdate).toISOString().substring(0, 10)}
               <span className='jjin_percent'> 찐리뷰 확률 {jjinper*100}%</span>
