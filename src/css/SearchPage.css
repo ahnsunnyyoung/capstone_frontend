@@ -24,3 +24,14 @@
   font-size: calc(10px + 2vmin);
   color: #929292;
 }
+
+.search_input_darkmode {
+  margin-top: 30px;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: calc(10px + 2vmin);
+  color: #929292;
+  width: 100%;
+}

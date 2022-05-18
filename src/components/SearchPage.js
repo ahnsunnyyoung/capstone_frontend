@@ -222,17 +222,18 @@ function SearchPage() {
   return (
     <ThemeProvider theme={myTheme}>
       <div className={classes.root}>
-      {/* <div className='search_page'> */}
         <div className={classes.header}>
-          <MainLogo/>
-          <SearchBar mode={mode}/>
-          <FormControlLabel
-            checked={mode === 'dark' ? true : false}
-            onChange={handleChange}
-            control={<MaterialUISwitch sx={{ m: 1 }} />}
-            label="다크 모드"
-            labelPlacement="start"
-          />
+          <MainLogo size={180}/>
+          <div className='search_input_darkmode'>
+            <SearchBar mode={mode}/>
+            <FormControlLabel
+              checked={mode === 'dark' ? true : false}
+              onChange={handleChange}
+              control={<MaterialUISwitch sx={{ m: 1 }} />}
+              label="다크 모드"
+              labelPlacement="start"
+            />
+          </div>
         </div>
         <FilterBar count={itemdata.length}/>
         <div className={classes.reviewList}>

@@ -17,6 +17,6 @@
   user-select:none;
 }
 
-.search_input input:focus {
+.search_input:focus {
   outline:none;
 }

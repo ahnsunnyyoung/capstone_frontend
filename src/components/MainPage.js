@@ -9,7 +9,7 @@ function MainPage() {
   return (
     <div className="main_page">
 
-      <MainLogo/>
+      <MainLogo size={300}/>
       <span className='no_drag'>x</span>
       <SearchBar/>
         
