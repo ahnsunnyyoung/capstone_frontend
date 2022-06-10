@@ -23,7 +23,7 @@ const lightStyles = makeStyles({
   },
   reviewList: {
     margin: '20px 4%',
-    width: '100%',
+    width: '90%',
     maxWidth: '900px'
   },
   searchInput: {

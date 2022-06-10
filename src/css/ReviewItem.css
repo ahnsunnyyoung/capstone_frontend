@@ -17,6 +17,11 @@
   margin-bottom: 3px;
 }
 
+.description {
+  width: 80%;
+  font-size: 0.8rem;
+}
+
 .subtitle {
   font-size: 0.7rem;
 }
@@ -25,3 +30,14 @@
   margin-bottom: 2px;
 }
 
+.is_ad_red {
+  float: right;
+  font-weight: 900;
+  color: #f84c4c;
+}
+
+.is_ad_blue {
+  float: right;
+  font-weight: 900;
+  color: #4c86f8;
+}

@@ -1,5 +1,5 @@
 .review_list {
-  margin: 20px 4%;
+  margin: 0px 4%;
   width: 100%;
   max-width: 900px;
 }
@@ -34,4 +34,10 @@
   font-size: calc(10px + 2vmin);
   color: #929292;
   width: 100%;
+}
+
+.search_result_info {
+  color : #929292;
+  font-size : 1rem;
+  margin : 15px 0px;
 }

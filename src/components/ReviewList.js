@@ -3,18 +3,15 @@ import '../css/ReviewList.css'
 import lightStyles from '../styles/lightStyles';
 import darkStyles from '../styles/darkStyles';
 
-function ReviewList({ mode, itemdata, page, itemsCountPerPage }) {
+function ReviewList({ mode, reviews, page }) {
 
   const classes = mode === 'dark' ? darkStyles() : lightStyles();
-
-  const startIdx = (page*itemsCountPerPage)-itemsCountPerPage
-  const endIdx = page*itemsCountPerPage
-  const showItem = itemdata.slice(startIdx,endIdx)
+  console.log("리뷰 그리는 곳",reviews[0],"start",page)
 
   return (
     <div>
       <ul>
-        {showItem.map((item) => {
+        {reviews.map((item) => {
           return (
             <>
               <ReviewItem
@@ -24,7 +21,8 @@ function ReviewList({ mode, itemdata, page, itemsCountPerPage }) {
                 link={item.link}
                 description={item.description}
                 bloggername={item.bloggername}
-                jjinper={item.jjinper}
+                probability={item.probability}
+                ad={item.ad}
               />
               <hr/>
             </>

@@ -11,7 +11,7 @@ function parse(str) {
   return new Date(y,m,d);
 }
 
-function ReviewItem({ mode, key, title, postdate, link, description, bloggername, jjinper }) {
+function ReviewItem({ mode, key, title, postdate, link, description, bloggername, probability, ad }) {
   const classes = mode === 'dark' ? darkStyles() : lightStyles();
   return (
       <Card className={classes.reviewCard} key={key}>
@@ -19,15 +19,30 @@ function ReviewItem({ mode, key, title, postdate, link, description, bloggername
           <a className={classes.reciewItem} href={link}>
             <Card.Text className='less_margin'>
               <span className='subtitle'>
-                {bloggername} {parse(postdate).toISOString().substring(0, 10)}
+                {bloggername}
               </span>
-              <span className='jjin_percent'> 찐리뷰 확률 {jjinper*100}%</span>
+              <span className='jjin_percent'> 찐리뷰 확률 {((1-probability)*100).toFixed(2)}%</span>
+              
             </Card.Text>
             <Card.Text className='less_margin'>
-              <span className='title'>{title}</span>
+              <span className='title'>
+                <div  dangerouslySetInnerHTML={{ __html: title }}></div>
+                </span>
             </Card.Text>
             <Card.Text className='less_margin'>
-              <span className='subtitle'>{description}</span>
+              <span>
+                <div className='description'dangerouslySetInnerHTML={{ __html: description }}></div>
+              </span>
+                
+                <span className='subtitle'>
+                  {parse(postdate).toISOString().substring(0, 10)}
+                </span>
+                
+                {
+                  ad === "1"
+                  ? <span className='is_ad_red'> 광고로 추정됩니다</span>
+                  : <span className='is_ad_blue'> 찐리뷰입니다!</span>
+                }
               </Card.Text>
           </a>
         </Card.Body>

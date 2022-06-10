@@ -16,6 +16,11 @@
   pointer-events: none;
 }
 
+button {
+  border: 0px;
+  background: none;
+}
+
 a {
   color: #4c86f8;
 }

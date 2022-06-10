@@ -24,7 +24,7 @@ const darkStyles = makeStyles({
   reviewList: {
     backgroundColor: '#35363a',
     margin: '20px 4%',
-    width: '100%',
+    width: '90%',
     maxWidth: '900px'
   },
   searchInput: {
@@ -34,7 +34,6 @@ const darkStyles = makeStyles({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    backgroundColor: 'white',
     maxWidth: '500px',
     width: '80%',
     backgroundColor: '#35363a'

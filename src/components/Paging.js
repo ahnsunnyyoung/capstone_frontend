@@ -2,7 +2,7 @@ import React from "react"
 import '../css/Paging.css'
 import Pagination from "react-js-pagination"
 
-const Paging = ({page, count, itemsCountPerPage, setPage}) => { 
+const Paging = ({page, count, itemsCountPerPage, handlePageChange}) => { 
   return (
     <Pagination 
       activePage={page} 
@@ -11,7 +11,7 @@ const Paging = ({page, count, itemsCountPerPage, setPage}) => {
       pageRangeDisplayed={5} 
       prevPageText={"‹"} 
       nextPageText={"›"} 
-      onChange={setPage} 
+      onChange={handlePageChange} 
       /> 
     ); 
   }; 

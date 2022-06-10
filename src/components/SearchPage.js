@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import { styled, ThemeProvider, createTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { FaSearch } from "react-icons/fa";
 
 import lightStyles from '../styles/lightStyles';
 import darkStyles from '../styles/darkStyles';
@@ -72,17 +76,64 @@ const darkTheme = createTheme({
 });
 
 function SearchPage() {
+  const paramsSearchTxt = useParams().searchTxt;
   
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   
   const [mode, setMode] = useState(prefersDarkMode ? 'dark' : 'light');
   const [myTheme, setTheme] = useState(prefersDarkMode ? darkTheme : lightTheme);
   const [page, setPage] = useState(1);
+  
+  const URL = '/search/blog.json?query='
+  const [reviews, setReviews] = useState(null);
+  const [reviewsNum, setReviewsNum] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [searchtxt, setSearchtxt] = useState(paramsSearchTxt);
+  const navigate = useNavigate();
 
   const classes = mode === 'dark' ? darkStyles() : lightStyles();
 
+  const onChangeSearch = (e) => {
+    e.preventDefault();
+    setSearchtxt(e.target.value);
+  }
+  
+  const fetchReviews = async () => {
+    console.log("리뷰 패치")
+    try {
+      // 요청이 시작 할 때에는 error 와 reviews 를 초기화하고
+      setError(null);
+      setReviews(null);
+      // loading 상태를 true 로 바꿉니다.
+      setLoading(true);
+      const response = await axios.get(URL+'?query='+searchtxt+'&display='+5+'&start='+page+((page-1)*5) );
+      setReviewsNum(response.data.total)
+      setReviews(response.data.items); // 데이터는 response.data 안에 들어있습니다.
+    } catch (e) {
+      setError(e);
+    }
+    setLoading(false);
+  };
+
+  const onSearch = (e) => {
+    e.preventDefault();
+    if (searchtxt ===  null || searchtxt === "") {
+      navigate('/search/null')
+    } else {
+      navigate('/search/'+searchtxt)
+      fetchReviews();
+    }
+  }
+
+  const handlePageChange = (page) => {
+    setPage(page);
+    console.log("페이지 변경",page)
+    fetchReviews();
+  };
+
   const handleChange = (e) => {
-    if (mode=='light') {
+    if (mode==='light') {
       // setDark(false)
       setMode('dark');
       setTheme(darkTheme);
@@ -93,156 +144,58 @@ function SearchPage() {
     }
   };
 
-  const itemdata = [
-    {
-      "title" : "[일산 맛집] 원마운트 차이나는 분식",
-      "postdate" : "20210307",
-      "link" : "https://blog.naver.com/agnes4god/222267688804",
-      "description" : "일산 맛집 원마운트 차이나는 분식집에 다녀왔어요.",
-      "bloggername" : "아침에 쏟아지는 햇살처럼...",
-      "jjinper" : 0.92
-    },
-    {
-      "title" : "일산 맛집 열두시테이블 후기",
-      "postdate" : "20200619",
-      "link" : "https://blog.naver.com/miminimkkk/221999915307",
-      "description" : "일산 맛집 열두시테이블 후기",
-      "bloggername" : "♥ 미미찡의 귤 까는 놀이터 ♥",
-      "jjinper" : 0.90
-    },
-    {
-      "title" : "일산 맛집 숙성장어로 몸보신ㅣ폭풍장어본점",
-      "postdate" : "20220315",
-      "link" : "https://blog.naver.com/mj100600?Redirect=Log&logNo=222672770358",
-      "description" : "일산 맛집 숙성장어로 몸보신해요",
-      "bloggername" : "avec moi ♪",
-      "jjinper" : 0.76
-    },
-    {
-      "title" : "[일산 맛집] 원마운트 차이나는 분식",
-      "postdate" : "20210307",
-      "link" : "https://blog.naver.com/agnes4god/222267688804",
-      "description" : "일산 맛집 원마운트 차이나는 분식집에 다녀왔어요.",
-      "bloggername" : "아침에 쏟아지는 햇살처럼...",
-      "jjinper" : 0.92
-    },
-    {
-      "title" : "일산 맛집 열두시테이블 후기",
-      "postdate" : "20200619",
-      "link" : "https://blog.naver.com/miminimkkk/221999915307",
-      "description" : "일산 맛집 열두시테이블 후기",
-      "bloggername" : "♥ 미미찡의 귤 까는 놀이터 ♥",
-      "jjinper" : 0.90
-    },
-    {
-      "title" : "일산 맛집 숙성장어로 몸보신ㅣ폭풍장어본점",
-      "postdate" : "20220315",
-      "link" : "https://blog.naver.com/mj100600?Redirect=Log&logNo=222672770358",
-      "description" : "일산 맛집 숙성장어로 몸보신해요",
-      "bloggername" : "avec moi ♪",
-      "jjinper" : 0.76
-    },
-    {
-      "title" : "[일산 맛집] 원마운트 차이나는 분식",
-      "postdate" : "20210307",
-      "link" : "https://blog.naver.com/agnes4god/222267688804",
-      "description" : "일산 맛집 원마운트 차이나는 분식집에 다녀왔어요.",
-      "bloggername" : "아침에 쏟아지는 햇살처럼...",
-      "jjinper" : 0.92
-    },
-    {
-      "title" : "일산 맛집 열두시테이블 후기",
-      "postdate" : "20200619",
-      "link" : "https://blog.naver.com/miminimkkk/221999915307",
-      "description" : "일산 맛집 열두시테이블 후기",
-      "bloggername" : "♥ 미미찡의 귤 까는 놀이터 ♥",
-      "jjinper" : 0.90
-    },
-    {
-      "title" : "일산 맛집 숙성장어로 몸보신ㅣ폭풍장어본점",
-      "postdate" : "20220315",
-      "link" : "https://blog.naver.com/mj100600?Redirect=Log&logNo=222672770358",
-      "description" : "일산 맛집 숙성장어로 몸보신해요",
-      "bloggername" : "avec moi ♪",
-      "jjinper" : 0.76
-    },
-    {
-      "title" : "[일산 맛집] 원마운트 차이나는 분식",
-      "postdate" : "20210307",
-      "link" : "https://blog.naver.com/agnes4god/222267688804",
-      "description" : "일산 맛집 원마운트 차이나는 분식집에 다녀왔어요.",
-      "bloggername" : "아침에 쏟아지는 햇살처럼...",
-      "jjinper" : 0.92
-    },
-    {
-      "title" : "일산 맛집 열두시테이블 후기",
-      "postdate" : "20200619",
-      "link" : "https://blog.naver.com/miminimkkk/221999915307",
-      "description" : "일산 맛집 열두시테이블 후기",
-      "bloggername" : "♥ 미미찡의 귤 까는 놀이터 ♥",
-      "jjinper" : 0.90
-    },
-    {
-      "title" : "일산 맛집 숙성장어로 몸보신ㅣ폭풍장어본점",
-      "postdate" : "20220315",
-      "link" : "https://blog.naver.com/mj100600?Redirect=Log&logNo=222672770358",
-      "description" : "일산 맛집 숙성장어로 몸보신해요",
-      "bloggername" : "avec moi ♪",
-      "jjinper" : 0.76
-    },
-    {
-      "title" : "[일산 맛집] 원마운트 차이나는 분식",
-      "postdate" : "20210307",
-      "link" : "https://blog.naver.com/agnes4god/222267688804",
-      "description" : "일산 맛집 원마운트 차이나는 분식집에 다녀왔어요.",
-      "bloggername" : "아침에 쏟아지는 햇살처럼...",
-      "jjinper" : 0.92
-    },
-    {
-      "title" : "일산 맛집 열두시테이블 후기",
-      "postdate" : "20200619",
-      "link" : "https://blog.naver.com/miminimkkk/221999915307",
-      "description" : "일산 맛집 열두시테이블 후기",
-      "bloggername" : "♥ 미미찡의 귤 까는 놀이터 ♥",
-      "jjinper" : 0.90
-    },
-    {
-      "title" : "일산 맛집 숙성장어로 몸보신ㅣ폭풍장어본점",
-      "postdate" : "20220315",
-      "link" : "https://blog.naver.com/mj100600?Redirect=Log&logNo=222672770358",
-      "description" : "일산 맛집 숙성장어로 몸보신해요",
-      "bloggername" : "avec moi ♪",
-      "jjinper" : 0.76
-    },
-  
-  ]
-
   const itemsCountPerPage = 5;
 
-  return (
-    <ThemeProvider theme={myTheme}>
-      <div className={classes.root}>
-        <div className={classes.header}>
-          <MainLogo size={180}/>
-          <div className='search_input_darkmode'>
-            <SearchBar mode={mode}/>
-            <FormControlLabel
-              checked={mode === 'dark' ? true : false}
-              onChange={handleChange}
-              control={<MaterialUISwitch sx={{ m: 1 }} />}
-              label="다크 모드"
-              labelPlacement="start"
-            />
+
+  useEffect(() => {
+    fetchReviews();
+  }, []);
+
+  if (loading) { return <div>로딩중...</div>;}
+  else if (error) {return <div>에러가 발생했습니다</div>;}
+  else if (!reviews) {return null;}
+  else{
+    return (
+      <ThemeProvider theme={myTheme}>
+        <div className={classes.root}>
+          <div className={classes.header}>
+            <MainLogo size={180}/>
+            <div className='search_input_darkmode'>
+              <div className={classes.searchInput}>
+
+                <form style = {{"display": "flex","width":"100%"}} onSubmit={e=>onSearch(e)}>
+                  <input className='search_input' 
+                    type="text" 
+                    placeholder='검색하고 싶은 맛집 정보를 입력하세요.'
+                    onChange={onChangeSearch}/>
+
+                  <button type='submit'>
+                    <FaSearch className="search_icon" color='#4c86f8'/>
+                  </button>
+                </form>
+              </div>
+
+              <FormControlLabel
+                checked={mode === 'dark' ? true : false}
+                onChange={handleChange}
+                control={<MaterialUISwitch sx={{ m: 1 }} />}
+                label="다크 모드"
+                labelPlacement="start"
+              />
+            </div>
+          </div>
+          <FilterBar count={reviewsNum}/>
+
+
+          <div className={classes.reviewList}>
+            <div className='search_result_info'><b>{paramsSearchTxt}</b>에 대한 검색 결과입니다.</div>
+            <ReviewList mode={mode} reviews={reviews} page={page} />
+            <Paging page={page} count={reviewsNum} itemsCountPerPage={itemsCountPerPage} handlePageChange={handlePageChange}/>
           </div>
         </div>
-        <FilterBar count={itemdata.length}/>
-        <div className={classes.reviewList}>
-        <ReviewList mode={mode} itemdata={itemdata} page={page} itemsCountPerPage={itemsCountPerPage} />
-        <Paging page={page} count={itemdata.length} itemsCountPerPage={itemsCountPerPage} setPage={setPage}/>
-        </div>
-      </div>
-    </ThemeProvider>
-  );
+      </ThemeProvider>
+    );
+  }
 }
 
 export default SearchPage;

@@ -16,7 +16,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="search" element={<SearchPage />} />
+          <Route path="/search/:searchTxt" element={<SearchPage />} />
         </Routes>
       </BrowserRouter>
     </div>
