@@ -11,7 +11,6 @@ import { FaSearch } from "react-icons/fa";
 import lightStyles from '../styles/lightStyles';
 import darkStyles from '../styles/darkStyles';
 import '../css/SearchPage.css'
-import SearchBar from './SearchBar';
 import FilterBar from './FilterBar';
 import MainLogo from './MainLogo';
 import ReviewList from './ReviewList';

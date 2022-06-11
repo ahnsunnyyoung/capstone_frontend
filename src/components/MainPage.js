@@ -33,7 +33,6 @@ function MainPage() {
 
       <MainLogo size={300}/>
       <span className='no_drag'>x</span>
-      {/* <SearchBar mode = {"light"} ref={inputRef}/> */}
       <div className={classes.searchInput}>
 
         <form style = {{"display": "flex","width":"100%"}}onSubmit={e=>onSearch(e)}>
