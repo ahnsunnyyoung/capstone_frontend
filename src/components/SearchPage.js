@@ -186,7 +186,7 @@ function SearchPage() {
                   setFiltered(!filtered);
                 }}  />
             </div>
-            <span className='count'>총 검색결과 약 {count.toLocaleString()}개</span>
+            <span className='count'>총 검색결과 약 {count}개</span>
           </div>
           <hr/>
         </div>
