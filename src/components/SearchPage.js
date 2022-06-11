@@ -142,10 +142,8 @@ function SearchPage() {
       setRealError(null);
       setRealReviews(null);
       // loading 상태를 true 로 바꿉니다.
-      console.log("body",reviews_response)
       const response = await axios.post(POST_URL, reviews_response)
       setReviews(response.data); // 데이터는 response.data 안에 들어있습니다.
-      console.log("real review",response.data)
       setRealLoading(false);
     } catch (e) {
       setRealError(e);

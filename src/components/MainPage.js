@@ -18,7 +18,6 @@ function MainPage() {
   const onChangeSearch = (e) => {
     e.preventDefault();
     setSearchtxt(e.target.value);
-    console.log("onChangeSearch",searchtxt)
   }
 
   const onSearch = (e) => {

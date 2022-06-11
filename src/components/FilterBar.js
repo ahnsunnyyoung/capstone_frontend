@@ -1,4 +1,5 @@
 import Switch from '@mui/material/Switch';
+import * as React from 'react';
 
 import '../css/FilterBar.css'
 
