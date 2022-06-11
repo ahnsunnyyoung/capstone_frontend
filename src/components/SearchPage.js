@@ -192,7 +192,7 @@ function SearchPage() {
                   setFiltered(!filtered);
                 }}  />
             </div>
-            <span className='count'>총 검색결과 약 {count}개</span>
+            <span className='count'>총 검색결과 약 {count.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}개</span>
           </div>
           <hr/>
         </div>
