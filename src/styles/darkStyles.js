@@ -23,7 +23,7 @@ const darkStyles = makeStyles({
   },
   reviewList: {
     backgroundColor: '#35363a',
-    margin: '20px 4%',
+    margin: '0px 4%',
     width: '90%',
     maxWidth: '900px'
   },

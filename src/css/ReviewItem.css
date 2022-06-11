@@ -30,6 +30,12 @@
   margin-bottom: 2px;
 }
 
+.real_loading {
+  float: right;
+  font-weight: 900;
+  color: #c7c7c7;
+}
+
 .is_ad_red {
   float: right;
   font-weight: 900;
@@ -40,4 +46,26 @@
   float: right;
   font-weight: 900;
   color: #4c86f8;
+}
+
+.filtered_ad {
+  /* background:rgba(210,211,215,0.8); */
+  background: linear-gradient(45deg,
+  rgba(210,211,215,0.8) 25%, 
+  rgba(210,211,215,0.6) 0, 
+  rgba(210,211,215,0.6) 50%,
+  rgba(210,211,215,0.8) 0, 
+  rgba(210,211,215,0.8) 75%, 
+  rgba(210,211,215,0.6) 0);
+  -webkit-background-size:30px 30px;
+  background-size:30px 30px;
+  position: absolute;
+  border-radius: 5px;
+  width:100%;
+  height:100%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  font-size: large;
+  font-weight: bolder;
 }

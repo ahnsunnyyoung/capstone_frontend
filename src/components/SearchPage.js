@@ -84,13 +84,22 @@ function SearchPage() {
   const [myTheme, setTheme] = useState(prefersDarkMode ? darkTheme : lightTheme);
   const [page, setPage] = useState(1);
   
-  const URL = '/search/blog.json?query='
+  const GET_URL = '/search/blog.json?query='
+  const POST_URL = '/classification/blog.json'
   const [reviews, setReviews] = useState(null);
-  const [reviewsNum, setReviewsNum] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [searchtxt, setSearchtxt] = useState(paramsSearchTxt);
   const navigate = useNavigate();
+
+  const [filtered, setFiltered] = useState(false); // 필터 유무
+  
+  const [realReviews, setRealReviews] = useState(null);
+  const [realLoading, setRealLoading] = useState(true);
+  const [realError, setRealError] = useState(null);
+  
+  const itemsCountPerPage = 5;
+  const start = 1+((page-1)*5)
 
   const classes = mode === 'dark' ? darkStyles() : lightStyles();
 
@@ -99,37 +108,54 @@ function SearchPage() {
     setSearchtxt(e.target.value);
   }
   
-  const fetchReviews = async () => {
-    console.log("리뷰 패치")
+  const getReviews = async () => {
     try {
       // 요청이 시작 할 때에는 error 와 reviews 를 초기화하고
       setError(null);
       setReviews(null);
       // loading 상태를 true 로 바꿉니다.
       setLoading(true);
-      const response = await axios.get(URL+'?query='+searchtxt+'&display='+5+'&start='+page+((page-1)*5) );
-      setReviewsNum(response.data.total)
-      setReviews(response.data.items); // 데이터는 response.data 안에 들어있습니다.
+      setRealLoading(true);
+      const response = await axios.get(GET_URL+searchtxt+'&display='+itemsCountPerPage+'&start='+start );
+      getRealReviews(response.data)
+      setReviews(response.data); // 데이터는 response.data 안에 들어있습니다.
+      getRealReviews()
     } catch (e) {
       setError(e);
     }
     setLoading(false);
   };
 
+  const getRealReviews = async (reviews_response) => {
+    try {
+      // 요청이 시작 할 때에는 error 와 reviews 를 초기화하고
+      setRealError(null);
+      setRealReviews(null);
+      // loading 상태를 true 로 바꿉니다.
+      const response = await axios.post(POST_URL, reviews_response)
+      setReviews(response.data); // 데이터는 response.data 안에 들어있습니다.
+      console.log(response.data)
+      setRealLoading(false);
+    } catch (e) {
+      setRealError(e);
+    }
+  };
+    
+
   const onSearch = (e) => {
     e.preventDefault();
+    setPage(1)
     if (searchtxt ===  null || searchtxt === "") {
       navigate('/search/null')
     } else {
       navigate('/search/'+searchtxt)
-      fetchReviews();
+      getReviews();
     }
   }
 
   const handlePageChange = (page) => {
     setPage(page);
-    console.log("페이지 변경",page)
-    fetchReviews();
+    getReviews();
   };
 
   const handleChange = (e) => {
@@ -144,12 +170,79 @@ function SearchPage() {
     }
   };
 
-  const itemsCountPerPage = 5;
-
+  const label = { inputProps: { 'aria-label': 'Filter switch' } };
+  const filter_bar = (count) => {
+    if(count!=-1){
+      return (
+        <div className='filter_bar'>
+          <div className='filter_content'>
+            <div className='filter_switch'>
+              <span>찐맛집 필터</span>
+              <Switch {...label}
+                checked={filtered}
+                onClick={() => {
+                  setFiltered(!filtered);
+                }}  />
+            </div>
+            <span className='count'>총 검색결과 약 {count.toLocaleString()}개</span>
+          </div>
+          <hr/>
+        </div>
+      );
+    }else{
+      return (
+        <div className='filter_bar'>
+          <hr/>
+        </div>
+      );
+    }
+  }
 
   useEffect(() => {
-    fetchReviews();
+    getReviews();
   }, []);
+
+  // null 값 처리
+  if (paramsSearchTxt =="null") {
+    return(
+      <ThemeProvider theme={myTheme}>
+        <div className={classes.root}>
+          <div className={classes.header}>
+            <MainLogo size={180}/>
+            <div className='search_input_darkmode'>
+              <div className={classes.searchInput}>
+
+                <form style = {{"display": "flex","width":"100%"}} onSubmit={e=>onSearch(e)}>
+                  <input className='search_input' 
+                    type="text" 
+                    placeholder='검색하고 싶은 맛집 정보를 입력하세요.'
+                    onChange={onChangeSearch}/>
+
+                  <button type='submit'>
+                    <FaSearch className="search_icon" color='#4c86f8'/>
+                  </button>
+                </form>
+              </div>
+
+              <FormControlLabel
+                checked={mode === 'dark' ? true : false}
+                onChange={handleChange}
+                control={<MaterialUISwitch sx={{ m: 1 }} />}
+                label="다크 모드"
+                labelPlacement="start"
+              />
+            </div>
+          </div>
+          <FilterBar count={-1}/>
+
+
+          <div className={classes.reviewList}>
+            <div className='search_result_info'>검색어를 입력해주세요.</div>
+          </div>
+        </div>
+      </ThemeProvider>
+    )
+  }
 
   if (loading) { return <div>로딩중...</div>;}
   else if (error) {return <div>에러가 발생했습니다</div>;}
@@ -184,13 +277,13 @@ function SearchPage() {
               />
             </div>
           </div>
-          <FilterBar count={reviewsNum}/>
+          {filter_bar(reviews.total)}
 
 
           <div className={classes.reviewList}>
             <div className='search_result_info'><b>{paramsSearchTxt}</b>에 대한 검색 결과입니다.</div>
-            <ReviewList mode={mode} reviews={reviews} page={page} />
-            <Paging page={page} count={reviewsNum} itemsCountPerPage={itemsCountPerPage} handlePageChange={handlePageChange}/>
+            <ReviewList mode={mode} reviews={reviews.items} page={page} realLoading={realLoading} filtered={filtered}/>
+            <Paging page={page} count={reviews.total} itemsCountPerPage={itemsCountPerPage} handlePageChange={handlePageChange}/>
           </div>
         </div>
       </ThemeProvider>

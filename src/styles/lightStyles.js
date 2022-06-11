@@ -22,7 +22,7 @@ const lightStyles = makeStyles({
     color: '#929292'
   },
   reviewList: {
-    margin: '20px 4%',
+    margin: '0px 4%',
     width: '90%',
     maxWidth: '900px'
   },
