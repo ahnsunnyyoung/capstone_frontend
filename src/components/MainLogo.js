@@ -9,7 +9,7 @@ function MainLogo( { size } ) {
   return (
     <>
       <Link className='logo' to='/'>
-        <img src={logo} width = {size} />
+        <img src={logo} width = {size} alt="logo" />
       </Link>
     </>
   );

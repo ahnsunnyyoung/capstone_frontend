@@ -5,8 +5,6 @@ import darkStyles from '../styles/darkStyles';
 
 function ReviewList({ mode, reviews, page, realLoading, filtered, sortedReviews }) {
 
-  const classes = mode === 'dark' ? darkStyles() : lightStyles();
-
   if(filtered){
     return (
       <div>

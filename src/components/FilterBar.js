@@ -6,7 +6,7 @@ import '../css/FilterBar.css'
 const label = { inputProps: { 'aria-label': 'Filter switch' } };
 
 function FilterBar({ count }) {
-  if(count!=-1){
+  if(count!==-1){
     return (
       <div className='filter_bar'>
         <div className='filter_content'>
