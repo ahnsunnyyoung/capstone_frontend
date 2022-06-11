@@ -13,7 +13,7 @@ function parse(str) {
 
 function reviewPossibility(realLoading,probability,ad) {
   if (!realLoading){
-    if(ad===1){
+    if(ad==1){
       return(<span className='jjin_percent'> 찐리뷰 확률 {((1-probability)*100).toFixed(2)}%</span>)
     }else{
       return(<span className='jjin_percent'> 찐리뷰 확률 {((probability)*100).toFixed(2)}%</span>)
@@ -25,7 +25,7 @@ function reviewDecision(realLoading,ad) {
   if (realLoading){
     return(<span className='real_loading'> 찐맛집 분석 중입니다...</span>)
   } else{
-    if (ad===1){
+    if (ad==1){
       return(<span className='is_ad_red'> 광고로 추정됩니다</span>)
     }else{
       return(<span className='is_ad_blue'> 찐리뷰입니다!</span>)
@@ -35,7 +35,7 @@ function reviewDecision(realLoading,ad) {
 
 function ReviewItem({ mode, key, title, postdate, link, description, bloggername, probability, ad, realLoading, filtered}) {
   const classes = mode === 'dark' ? darkStyles() : lightStyles();
-  if (ad===1&&filtered){
+  if (ad==1&&filtered){
     return (
       <>
         <Card className={classes.reviewCard} key={key}>

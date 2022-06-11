@@ -180,7 +180,7 @@ function SearchPage() {
 
   const label = { inputProps: { 'aria-label': 'Filter switch' } };
   const filter_bar = (count) => {
-    if(count!==-1){
+    if(count!=-1){
       return (
         <div className='filter_bar'>
           <div className='filter_content'>
@@ -209,6 +209,7 @@ function SearchPage() {
   useEffect(() => {
     getReviews();
   }, []);
+  console.log(reviews)
 
   // null 값 처리
   if (paramsSearchTxt ==="null") {
