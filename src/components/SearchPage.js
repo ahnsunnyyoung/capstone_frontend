@@ -83,8 +83,8 @@ function SearchPage() {
   const [myTheme, setTheme] = useState(prefersDarkMode ? darkTheme : lightTheme);
   const [page, setPage] = useState(1);
   
-  const GET_URL = '/search/blog.json'
-  const POST_URL = '/classification/blog.json'
+  const GET_URL = 'http://3.39.137.73:8080/search/blog.json'
+  const POST_URL = 'http://3.39.137.73:8080/classification/blog.json'
   const [reviews, setReviews] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -146,6 +146,7 @@ function SearchPage() {
       setReviews(response.data); // 데이터는 response.data 안에 들어있습니다.
     } catch (e) {
     }
+    setRealLoading(false);
   };
     
 
