@@ -106,14 +106,19 @@ function SearchPage() {
   }
 
   const sortReviews = (reviews) => {
-    const clonedReviews = JSON.parse(JSON.stringify(reviews))
-    clonedReviews.sort((a, b) => {
-      if (a.ad < b.ad) return -1;
-      if (a.ad > b.ad) return 1;
-  
-      return 0;
-    });
-    return clonedReviews
+    if (!reviews){
+      return
+    }else{
+      const clonedReviews = JSON.parse(JSON.stringify(reviews))
+      clonedReviews.sort((a, b) => {
+        if (a.ad < b.ad) return -1;
+        if (a.ad > b.ad) return 1;
+    
+        return 0;
+      });
+      return clonedReviews
+
+    }
   }
   
   const getReviews = async () => {
