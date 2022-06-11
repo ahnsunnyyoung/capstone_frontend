@@ -7,7 +7,7 @@ function ReviewList({ mode, reviews, page, realLoading, filtered, sortedReviews 
     return (
       <div>
         <ul>
-          {sortedReviews.map((item) => {
+          {sortedReviews && sortedReviews.map((item) => {
               return (
                 <>
                   <ReviewItem
@@ -35,7 +35,7 @@ function ReviewList({ mode, reviews, page, realLoading, filtered, sortedReviews 
     return (
       <div>
         <ul>
-          {reviews.map((item) => {
+          {reviews && reviews.map((item) => {
               return (
                 <>
                   <ReviewItem
