@@ -83,8 +83,8 @@ function SearchPage() {
   const [myTheme, setTheme] = useState(prefersDarkMode ? darkTheme : lightTheme);
   const [page, setPage] = useState(1);
   
-  const GET_URL = '/search/blog.json'
-  const POST_URL = '/classification/blog.json'
+  const GET_URL = '/api/search/blog.json'
+  const POST_URL = '/api/classification/blog.json'
   const [reviews, setReviews] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
