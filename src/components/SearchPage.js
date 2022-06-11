@@ -93,9 +93,7 @@ function SearchPage() {
 
   const [filtered, setFiltered] = useState(false); // 필터 유무
   
-  const [realReviews, setRealReviews] = useState(null);
   const [realLoading, setRealLoading] = useState(true);
-  const [realError, setRealError] = useState(null);
   
   const itemsCountPerPage = 5;
   const start = 1+((page-1)*5)
@@ -138,14 +136,10 @@ function SearchPage() {
   const getRealReviews = async (reviews_response) => {
     try {
       // 요청이 시작 할 때에는 error 와 reviews 를 초기화하고
-      setRealError(null);
-      setRealReviews(null);
       // loading 상태를 true 로 바꿉니다.
       const response = await axios.post(POST_URL, reviews_response)
       setReviews(response.data); // 데이터는 response.data 안에 들어있습니다.
-      setRealLoading(false);
     } catch (e) {
-      setRealError(e);
     }
   };
     
@@ -180,7 +174,7 @@ function SearchPage() {
 
   const label = { inputProps: { 'aria-label': 'Filter switch' } };
   const filter_bar = (count) => {
-    if(count!=-1){
+    if(count!==-1){
       return (
         <div className='filter_bar'>
           <div className='filter_content'>
@@ -211,7 +205,7 @@ function SearchPage() {
   }, []);
 
   // null 값 처리
-  if (paramsSearchTxt =="null") {
+  if (paramsSearchTxt ==="null") {
     return(
       <ThemeProvider theme={myTheme}>
         <div className={classes.root}>

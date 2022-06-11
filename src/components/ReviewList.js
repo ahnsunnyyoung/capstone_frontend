@@ -1,7 +1,5 @@
 import ReviewItem from "./ReviewItem";
 import '../css/ReviewList.css'
-import lightStyles from '../styles/lightStyles';
-import darkStyles from '../styles/darkStyles';
 
 function ReviewList({ mode, reviews, page, realLoading, filtered, sortedReviews }) {
 
