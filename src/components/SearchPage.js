@@ -84,7 +84,7 @@ function SearchPage() {
   const [myTheme, setTheme] = useState(prefersDarkMode ? darkTheme : lightTheme);
   const [page, setPage] = useState(1);
   
-  const GET_URL = '/search/blog.json?query='
+  const GET_URL = '/search/blog.json'
   const POST_URL = '/classification/blog.json'
   const [reviews, setReviews] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -107,6 +107,17 @@ function SearchPage() {
     e.preventDefault();
     setSearchtxt(e.target.value);
   }
+
+  const sortReviews = (reviews) => {
+    const clonedReviews = JSON.parse(JSON.stringify(reviews))
+    clonedReviews.sort((a, b) => {
+      if (a.ad < b.ad) return -1;
+      if (a.ad > b.ad) return 1;
+  
+      return 0;
+    });
+    return clonedReviews
+  }
   
   const getReviews = async () => {
     try {
@@ -116,10 +127,9 @@ function SearchPage() {
       // loading 상태를 true 로 바꿉니다.
       setLoading(true);
       setRealLoading(true);
-      const response = await axios.get(GET_URL+searchtxt+'&display='+itemsCountPerPage+'&start='+start );
+      const response = await axios.get(GET_URL+'?query='+searchtxt+'&display='+itemsCountPerPage+'&start='+start );
       getRealReviews(response.data)
       setReviews(response.data); // 데이터는 response.data 안에 들어있습니다.
-      getRealReviews()
     } catch (e) {
       setError(e);
     }
@@ -132,9 +142,10 @@ function SearchPage() {
       setRealError(null);
       setRealReviews(null);
       // loading 상태를 true 로 바꿉니다.
+      console.log("body",reviews_response)
       const response = await axios.post(POST_URL, reviews_response)
       setReviews(response.data); // 데이터는 response.data 안에 들어있습니다.
-      console.log(response.data)
+      console.log("real review",response.data)
       setRealLoading(false);
     } catch (e) {
       setRealError(e);
@@ -282,7 +293,7 @@ function SearchPage() {
 
           <div className={classes.reviewList}>
             <div className='search_result_info'><b>{paramsSearchTxt}</b>에 대한 검색 결과입니다.</div>
-            <ReviewList mode={mode} reviews={reviews.items} page={page} realLoading={realLoading} filtered={filtered}/>
+            <ReviewList mode={mode} reviews={reviews.items} page={page} realLoading={realLoading} filtered={filtered} sortedReviews={sortReviews(reviews.items)}/>
             <Paging page={page} count={reviews.total} itemsCountPerPage={itemsCountPerPage} handlePageChange={handlePageChange}/>
           </div>
         </div>
